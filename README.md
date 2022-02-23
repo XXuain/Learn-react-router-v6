@@ -65,3 +65,21 @@ import { Outlet } from 'react-router-dom';
 let params = useParams();
 console.log(params.invoiceId)
 ```
+
+## index routes
+
+the main content area goes blank! We can fix this with an "index" route.
+
+```
+<Route path="invoices" element={<Invoices />}>
+    <Route
+    index
+    element={
+        <main style={{ padding: '1rem' }}>
+        <p>Select an invoice</p>
+        </main>
+    }
+    />
+    <Route path=":invoiceId" element={<Invoice />} />
+</Route>
+```
