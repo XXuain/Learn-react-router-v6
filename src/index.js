@@ -7,13 +7,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Expenses from './routes/expenses';
 import Invoices from './routes/invoices';
+import Invoice from './routes/invoice';
 
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
         <Route path="expenses" element={<Expenses />} />
-        <Route path="invoices" element={<Invoices />} />
+        <Route path="invoices" element={<Invoices />}>
+          <Route path=":invoiceId" element={<Invoice />} />
+        </Route>
 
         {/* no match route */}
         <Route
