@@ -18,7 +18,7 @@ import { BrowserRouter } from "react-router-dom";
 ...
 ```
 
-## nested routes
+## Nested routes
 
 ```
 // index.js
@@ -47,7 +47,7 @@ import { Outlet } from 'react-router-dom';
 </div>
 ```
 
-## params routes
+## Params routes
 
 ```
 // index.js
@@ -66,7 +66,7 @@ let params = useParams();
 console.log(params.invoiceId)
 ```
 
-## index routes
+## Index routes
 
 the main content area goes blank! We can fix this with an "index" route.
 
@@ -82,4 +82,38 @@ the main content area goes blank! We can fix this with an "index" route.
     />
     <Route path=":invoiceId" element={<Invoice />} />
 </Route>
+```
+
+## Active navLinks
+
+To display the link as the active link the user is looking at.
+
+Changed the style from a simple object to a function that returns an object.
+
+```
+import { NavLink, Outlet } from "react-router-dom";
+<NavLink
+    style={({ isActive }) => {
+        return {
+        display: "block",
+        margin: "1rem 0",
+        color: isActive ? "red" : "",
+        };
+    }}
+    to={`/invoices/${invoice.number}`}
+    key={invoice.number}
+    >
+    {invoice.name}
+</NavLink>
+...
+```
+
+Do the same thing with className on NavLink:
+
+```
+// normal string
+<NavLink className="red" />
+
+// function
+<NavLink className={({ isActive }) => isActive ? "red" : "blue"} />
 ```
