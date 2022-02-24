@@ -45,53 +45,6 @@ import { Outlet } from 'react-router-dom';
 </div>
 ```
 
-## Params routes
-
-```javascript
-// index.js
-<Routes>
-  <Route path="/" element={<App />} />
-  <Route path="expenses" element={<Expenses />} />
-  <Route path="invoices" element={<Invoices />}>
-    <Route path=":invoiceId" element={<Invoice />} />
-  </Route>
-</Routes>
-```
-
-```javascript
-// invoices.jsx
-let params = useParams();
-console.log(params.invoiceId);
-```
-
-## Search params
-
-They are at the end after a `?`. You've seen them across the web like `"/login?success=1"` or `"/shoes?brand=nike&sort=asc&sortby=price"`.
-easy to read and manipulate the search params with `useSearchParams`
-It works a lot like `React.useState()` but stores and sets the state in the URL search params instead of in memory.
-
-```javascript
-import { useSearchParams } from 'react-router-dom';
-...
-let [searchParams, setSearchParams] = useSearchParams();
-console.log('searchParams', searchParams); // URLSearchParams {}
-console.log('searchParams >> ', Object.fromEntries(searchParams.entries())); // 轉為 object
-```
-
-Use `get()`
-
-```javascript
-// https://.../user?filter=123&name=yyy
-console.log(searchParams.get('filter')); // 123
-```
-
-Set search params
-
-```javascript
-setSearchParams({ filter });
-setSearchParams({}); // set empty
-```
-
 ## Index routes
 
 the main content area goes blank! We can fix this with an "index" route.
@@ -144,4 +97,67 @@ Do the same thing with className on NavLink:
 // function
 <NavLink className={({ isActive }) => isActive ? "red" : "blue"} />
 
+```
+
+## Params routes `useParams`
+
+```javascript
+// index.js
+<Routes>
+  <Route path="/" element={<App />} />
+  <Route path="expenses" element={<Expenses />} />
+  <Route path="invoices" element={<Invoices />}>
+    <Route path=":invoiceId" element={<Invoice />} />
+  </Route>
+</Routes>
+```
+
+```javascript
+// invoices.jsx
+import { useParams } from 'react-router-dom';
+let params = useParams();
+console.log(params.invoiceId);
+```
+
+## Search params `useSearchParams`
+
+They are at the end after a `?`. You've seen them across the web like `"/login?success=1"` or `"/shoes?brand=nike&sort=asc&sortby=price"`.
+easy to read and manipulate the search params with `useSearchParams`
+It works a lot like `React.useState()` but stores and sets the state in the URL search params instead of in memory.
+
+```javascript
+import { useSearchParams } from 'react-router-dom';
+...
+let [searchParams, setSearchParams] = useSearchParams();
+console.log('searchParams', searchParams); // URLSearchParams {}
+console.log('searchParams >> ', Object.fromEntries(searchParams.entries())); // 轉為 object
+```
+
+Use `get()`
+
+```javascript
+// https://.../user?filter=123&name=yyy
+console.log(searchParams.get('filter')); // 123
+```
+
+Set search params
+
+```javascript
+setSearchParams({ filter });
+setSearchParams({}); // set empty
+```
+
+## `useLocation` get URL info
+
+Returns a location that tells us information about the URL
+A location looks something like this:
+
+```json
+{
+  "pathname": "/invoices",
+  "search": "?filter=sa",
+  "hash": "",
+  "state": null,
+  "key": "ae4cz2j"
+}
 ```
