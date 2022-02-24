@@ -66,22 +66,52 @@ let params = useParams();
 console.log(params.invoiceId)
 ```
 
+### Search params
+
+They are at the end after a `?`. You've seen them across the web like `"/login?success=1"` or `"/shoes?brand=nike&sort=asc&sortby=price"`.
+easy to read and manipulate the search params with `useSearchParams`
+It works a lot like `React.useState()` but stores and sets the state in the URL search params instead of in memory.
+
+```
+import { useSearchParams } from 'react-router-dom';
+...
+let [searchParams, setSearchParams] = useSearchParams();
+console.log('searchParams', searchParams); // URLSearchParams {}
+console.log('searchParams >> ', Object.fromEntries(searchParams.entries())); // 轉為 object
+```
+
+Use `get()`
+
+```
+// https://.../user?filter=123&name=yyy
+console.log(searchParams.get('filter')) // 123
+```
+
+Set search params
+
+```
+setSearchParams({ filter })
+setSearchParams({}); // set empty
+```
+
 ## Index routes
 
 the main content area goes blank! We can fix this with an "index" route.
 
 ```
+
 <Route path="invoices" element={<Invoices />}>
     <Route
-    index
-    element={
-        <main style={{ padding: '1rem' }}>
-        <p>Select an invoice</p>
-        </main>
-    }
+        index
+        element={
+            <main style={{ padding: '1rem' }}>
+            <p>Select an invoice</p>
+            </main>
+        }
     />
     <Route path=":invoiceId" element={<Invoice />} />
 </Route>
+
 ```
 
 ## Active navLinks
@@ -91,29 +121,36 @@ To display the link as the active link the user is looking at.
 Changed the style from a simple object to a function that returns an object.
 
 ```
+
 import { NavLink, Outlet } from "react-router-dom";
 <NavLink
-    style={({ isActive }) => {
-        return {
-        display: "block",
-        margin: "1rem 0",
-        color: isActive ? "red" : "",
-        };
-    }}
-    to={`/invoices/${invoice.number}`}
-    key={invoice.number}
-    >
-    {invoice.name}
+style={({ isActive }) => {
+return {
+display: "block",
+margin: "1rem 0",
+color: isActive ? "red" : "",
+};
+}}
+to={`/invoices/${invoice.number}`}
+key={invoice.number} >
+{invoice.name}
 </NavLink>
 ...
+
 ```
 
 Do the same thing with className on NavLink:
 
 ```
+
 // normal string
 <NavLink className="red" />
 
 // function
 <NavLink className={({ isActive }) => isActive ? "red" : "blue"} />
+
+```
+
+```
+
 ```
