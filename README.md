@@ -161,3 +161,7 @@ A location looks something like this:
   "key": "ae4cz2j"
 }
 ```
+
+## Custom behavior
+
+Additive selected nav, to see `components/BankLink`
