@@ -1,6 +1,13 @@
 /** @format */
 import React from 'react';
-import { Link, Outlet, Routes, Route } from 'react-router-dom';
+import {
+  Link,
+  Outlet,
+  Routes,
+  Route,
+  useResolvedPath,
+  useMatch,
+} from 'react-router-dom';
 import Expenses from './pages/expenses';
 import Invoices from './pages/invoices';
 import Invoice from './pages/invoice';
@@ -69,25 +76,27 @@ function Layout() {
       >
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <CustomLink to="/">Home</CustomLink>
           </li>
           <li>
-            <Link to="/invoices">Invoices</Link>
+            <CustomLink to="/invoices">Invoices</CustomLink>
           </li>
           <li>
-            <Link to="/expenses">Expenses</Link>
+            <CustomLink to="/expenses">Expenses</CustomLink>
           </li>
           <li>
-            <Link to="/shoes">Shoes</Link>
+            <CustomLink to="/shoes">Shoes</CustomLink>
           </li>
           <li>
-            <Link to="/descendant">Descendant</Link>
+            <CustomLink to="/descendant">Descendant</CustomLink>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <CustomLink to="/about">About</CustomLink>
           </li>
           <li>
-            <Link to="/dashboard/messages">Messages (Dashboard)</Link>
+            <CustomLink to="/dashboard/messages">
+              Messages (Dashboard)
+            </CustomLink>
           </li>
         </ul>
       </nav>
@@ -101,6 +110,24 @@ function Home() {
   return (
     <div>
       <h2>Home</h2>
+    </div>
+  );
+}
+
+function CustomLink({ children, to, ...props }) {
+  let resolved = useResolvedPath(to);
+  let match = useMatch({ path: resolved.pathname, end: true });
+
+  return (
+    <div>
+      <Link
+        style={{ textDecoration: match ? 'underline' : 'none' }}
+        to={to}
+        {...props}
+      >
+        {children}
+      </Link>
+      {match && ' (active)'}
     </div>
   );
 }
