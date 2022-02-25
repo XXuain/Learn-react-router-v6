@@ -47,12 +47,12 @@ import { Outlet } from 'react-router-dom';
 
 ## Index routes
 
-the main content area goes blank! We can fix this with an "index" route.
+the main content area goes blank! We can fix this with an `index` route or `path=""`.
 
 ```javascript
 <Route path="invoices" element={<Invoices />}>
   <Route
-    index
+    index // path=""
     element={
       <main style={{ padding: '1rem' }}>
         <p>Select an invoice</p>
@@ -170,7 +170,7 @@ Additive selected nav, to see `components/BankLink`
 
 The programmer to change the URL
 
-```
+```javascript
 import { useNavigate } from 'react-router-dom';
 ...
 <button
@@ -182,4 +182,31 @@ import { useNavigate } from 'react-router-dom';
   Delete
 </button>
 
+```
+
+## Descendant routes
+
+To put a `*` at the end of the parent route's path
+
+```javascript
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="dashboard/*" element={<Dashboard />} /> // *
+    </Routes>
+  );
+}
+
+function Dashboard() {
+  return (
+    <div>
+      <p>Look, more routes!</p>
+      <Routes>
+        <Route path="/" element={<DashboardGraphs />} />
+        <Route path="invoices" element={<InvoiceList />} />
+      </Routes>
+    </div>
+  );
+}
 ```

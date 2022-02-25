@@ -14,6 +14,7 @@ function App() {
         <Link to="/invoices">Invoices</Link>
         <Link to="/expenses">Expenses</Link>
         <Link to="/shoes">Shoes</Link>
+        <Link to="/descendant">Descendant</Link>
       </nav>
       <Outlet />
     </div>

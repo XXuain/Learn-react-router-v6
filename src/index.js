@@ -9,6 +9,7 @@ import Expenses from './routes/expenses';
 import Invoices from './routes/invoices';
 import Invoice from './routes/invoice';
 import Shoes from './routes/shoes';
+import Descendant from './routes/descendant';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -26,6 +27,7 @@ ReactDOM.render(
           />
           <Route path=":invoiceId" element={<Invoice />} />
         </Route>
+        <Route path="descendant/*" element={<Descendant />} />
         <Route path="shoes" element={<Shoes />} />
 
         {/* no match route */}
