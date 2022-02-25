@@ -5,11 +5,11 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Expenses from './routes/expenses';
-import Invoices from './routes/invoices';
-import Invoice from './routes/invoice';
-import Shoes from './routes/shoes';
-import Descendant from './routes/descendant';
+import Expenses from './pages/expenses';
+import Invoices from './pages/invoices';
+import Invoice from './pages/invoice';
+import Shoes from './pages/shoes';
+import Descendant from './pages/descendant';
 
 ReactDOM.render(
   <BrowserRouter>
