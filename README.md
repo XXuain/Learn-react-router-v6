@@ -165,3 +165,21 @@ A location looks something like this:
 ## Custom behavior
 
 Additive selected nav, to see `components/BankLink`
+
+## Navigating Programmatically `useNavigate`
+
+The programmer to change the URL
+
+```
+import { useNavigate } from 'react-router-dom';
+...
+<button
+  onClick={() => {
+    deleteInvoice(invoice.number);
+    navigate('/invoices'); // to invoices page
+  }}
+>
+  Delete
+</button>
+
+```
