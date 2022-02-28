@@ -8,7 +8,8 @@ import {
   useResolvedPath,
   useMatch,
 } from 'react-router-dom';
-import Expenses from './pages/expenses';
+import Home from './pages/Home';
+import Pizza from './pages/Pizza';
 import Invoices from './pages/invoices';
 import Invoice from './pages/invoice';
 import Shoes from './pages/shoes';
@@ -24,7 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="expenses" element={<Expenses />} />
+          <Route path="pizza" element={<Pizza />} />
           <Route path="invoices" element={<Invoices />}>
             <Route
               index
@@ -82,7 +83,9 @@ function Layout() {
             <CustomLink to="/invoices">Invoices</CustomLink>
           </li>
           <li>
-            <CustomLink to="/expenses">Expenses</CustomLink>
+            <CustomLink to="/Pizza">
+              Pizza(Complex data in URL query parameter.)
+            </CustomLink>
           </li>
           <li>
             <CustomLink to="/shoes">Shoes</CustomLink>
@@ -102,14 +105,6 @@ function Layout() {
       </nav>
       <hr />
       <Outlet />
-    </div>
-  );
-}
-
-function Home() {
-  return (
-    <div>
-      <h2>Home</h2>
     </div>
   );
 }
