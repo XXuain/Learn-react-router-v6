@@ -1,6 +1,6 @@
 /** @format */
 import { useParams, useNavigate } from 'react-router-dom';
-import { getInvoice, deleteInvoice } from '../data';
+import { getInvoice, deleteInvoice } from '../data/invoices';
 
 export default function Invoice() {
   let navigate = useNavigate();

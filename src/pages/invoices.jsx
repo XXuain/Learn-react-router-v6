@@ -1,6 +1,6 @@
 /** @format */
 import { Outlet, useSearchParams } from 'react-router-dom';
-import { getInvoices } from '../data';
+import { getInvoices } from '../data/invoices';
 import QueryNavLink from '../componets/QueryNavLink';
 
 export default function Invoices() {

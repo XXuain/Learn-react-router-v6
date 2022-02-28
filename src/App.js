@@ -10,6 +10,7 @@ import {
 } from 'react-router-dom';
 import Home from './pages/Home';
 import Pizza from './pages/Pizza';
+import ModalImage from './pages/ModalImage';
 import Invoices from './pages/invoices';
 import Invoice from './pages/invoice';
 import Shoes from './pages/shoes';
@@ -25,7 +26,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="pizza" element={<Pizza />} />
           <Route path="invoices" element={<Invoices />}>
             <Route
               index
@@ -58,6 +58,10 @@ function App() {
             }
           />
 
+          {/* example */}
+          <Route path="pizza" element={<Pizza />} />
+          <Route path="modalImage/*" element={<ModalImage />} />
+
           {/* no match route */}
           <Route path="*" element={<NoMatch />} />
         </Route>
@@ -83,11 +87,6 @@ function Layout() {
             <CustomLink to="/invoices">Invoices</CustomLink>
           </li>
           <li>
-            <CustomLink to="/Pizza">
-              Pizza(Complex data in URL query parameter.)
-            </CustomLink>
-          </li>
-          <li>
             <CustomLink to="/shoes">Shoes</CustomLink>
           </li>
           <li>
@@ -99,6 +98,16 @@ function Layout() {
           <li>
             <CustomLink to="/dashboard/messages">
               Messages (Dashboard)
+            </CustomLink>
+          </li>
+          <li>
+            <CustomLink to="/pizza">
+              Pizza(Complex data in URL query parameter.)
+            </CustomLink>
+          </li>
+          <li>
+            <CustomLink to="/modalImage">
+              ModalImage(Notice how the URL updates when the modal opens)
             </CustomLink>
           </li>
         </ul>
@@ -132,7 +141,7 @@ function NoMatch() {
     <div>
       <h2>Nothing to see here!</h2>
       <p>
-        <Link to="/">Go to the home page</Link>
+        <Link to="/">Go to the home page!</Link>
       </p>
     </div>
   );
