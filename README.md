@@ -210,3 +210,32 @@ function Dashboard() {
   );
 }
 ```
+
+## Object routes `useRoutes`
+
+```javascript
+import { useRoutes } from 'react-router-dom';
+function ObjectRoute() {
+  let routes = [
+    {
+      path: '/',
+      element: <Layout />,
+      children: [
+        { path: '', element: <Home /> }, // index can use path: ''
+        {
+          path: 'courses',
+          element: <Courses />,
+          children: [
+            { index: true, element: <CoursesIndex /> },
+            { path: '/courses/:id', element: <Course /> },
+          ],
+        },
+        { path: '*', element: <NoMatch /> },
+      ],
+    },
+  ];
+
+  let element = useRoutes(routes);
+  return <div>ObjectRoute{element}</div>;
+}
+```

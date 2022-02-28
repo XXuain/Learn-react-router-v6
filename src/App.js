@@ -9,12 +9,13 @@ import {
   useMatch,
 } from 'react-router-dom';
 import Home from './pages/Home';
-import Pizza from './pages/Pizza';
-import ModalImage from './pages/ModalImage';
 import Invoices from './pages/invoices';
 import Invoice from './pages/invoice';
 import Shoes from './pages/shoes';
 import Descendant from './pages/descendant';
+import Pizza from './pages/Pizza';
+import ObjectRoute from './pages/ObjectRoute';
+import ModalImage from './pages/ModalImage';
 
 const About = React.lazy(() => import('./pages/About'));
 const Dashboard = React.lazy(() => import('./pages/Dashboard'));
@@ -61,6 +62,7 @@ function App() {
           {/* example */}
           <Route path="pizza" element={<Pizza />} />
           <Route path="modalImage/*" element={<ModalImage />} />
+          <Route path="objectRoute/*" element={<ObjectRoute />} />
 
           {/* no match route */}
           <Route path="*" element={<NoMatch />} />
@@ -109,6 +111,9 @@ function Layout() {
             <CustomLink to="/modalImage">
               ModalImage(Notice how the URL updates when the modal opens)
             </CustomLink>
+          </li>
+          <li>
+            <CustomLink to="/objectRoute">ObjectRoute</CustomLink>
           </li>
         </ul>
       </nav>
